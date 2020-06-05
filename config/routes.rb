@@ -1,6 +1,28 @@
 Rails.application.routes.draw do
+  get 'contacts/new'
+  get 'contacts/create'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
+
+  resources :users
+  get 'users/:id/leave' => 'users#leave', as: 'users_leave'
+
+  resources :posts do
+
+    resources :likes, only: [:create, :destroy]
+
+    resources :comments, only: [:create, :destroy]
+
+    resources :bookmarks, only: [:create, :destroy]
+  end
+
+
+  resources :notifications, only: [:index, :destroy]
+
+  resources :locals, only: [:create, :destroy]
+
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
