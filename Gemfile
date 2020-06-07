@@ -78,3 +78,5 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
 gem 'activeadmin'
+# 画像を複数枚アップロードする
+gem 'carrierwave'

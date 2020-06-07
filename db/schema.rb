@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_05_141935) do
+ActiveRecord::Schema.define(version: 2020_06_06_153944) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_141935) do
   end
 
   create_table "locals", force: :cascade do |t|
-    t.string "area_name"
+    t.integer "area_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_141935) do
     t.integer "local_id"
     t.string "title"
     t.text "post_text"
-    t.string "post_image"
+    t.string "post_images"
     t.float "star"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_141935) do
     t.datetime "remember_created_at"
     t.string "family_name"
     t.string "first_name"
-    t.string "icon_image"
+    t.string "icon_image_id"
     t.integer "age"
     t.string "introduction"
     t.string "postal_code"

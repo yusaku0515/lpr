@@ -1,0 +1,78 @@
+<div class="container">
+
+<h4>ユーザー情報編集</h4>
+
+<% if @user.user_status == true %>
+
+<!-- 一般ユーザーの情報編集 -->
+<%= form_for(@user) do |f| %>
+ <% if @user.errors.any? %>
+ <div id="error_explanation">
+  <h2><%= @user.errors.count %>errors prohibited this obj from being saved:</h2>
+  <ul>
+   <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+   <% end %>
+  </ul>
+ </div>
+ <% end %>
+
+ <p>名前</p>
+ <%= f.label :（性） %><br />
+ <%= f.text_field :family_name, placeholder:"family_name" %>
+ <%= f.label :（性） %><br />
+ <%= f.text_field :first_name, placeholder:"first_name" %>
+
+ <p>アイコン画像</p>
+ <%= f.attachment_field :icon_image %>
+
+ <p>自己紹介文</p>
+ <%= f.text_area :introduction %><br>
+
+ <%= f.submit "変更内容を保存する" %>
+<% end %>
+
+<% else %>
+
+<!-- 法人ユーザーの情報編集 -->
+<%= form_for(@user) do |f| %>
+ <% if @user.errors.any? %>
+ <div id="error_explanation">
+  <h2><%= @user.errors.count %>errors prohibited this obj from being saved:</h2>
+  <ul>
+   <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+   <% end %>
+  </ul>
+ </div>
+ <% end %>
+
+ <p>企業名・団体名</p>
+ <%= f.text_field :company_name, placeholder:"company_name" %>
+
+ <p>郵便番号</p>
+ <%= f.text_field :postal_code, placeholder:"postal_code" %>
+
+ <p>住所</p>
+ <%= f.text_field :address, placeholder:"address" %>
+
+ <p>電話番号</p>
+ <%= f.text_field :phone_number, placeholder:"phone_number" %>
+
+ <p>ホームページURL</p>
+ <%= f.text_field :hp_url, placeholder:"hp_url" %>
+
+ <p>アイコン画像</p>
+ <%= f.attachment_field :icon_image %>
+
+ <p>自己紹介文</p>
+ <%= f.text_area :introduction %><br>
+
+ <%= f.submit "変更内容を保存する" %>
+<% end %>
+
+<% end %>
+
+
+
+</div>

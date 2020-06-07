@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
     resources :bookmarks, only: [:create, :destroy]
   end
-
+  get '/' => 'posts#index', as: 'root'
 
   resources :notifications, only: [:index, :destroy]
 

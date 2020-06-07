@@ -1,0 +1,18 @@
+<div class="container">
+
+
+<p>ユーザー名</p>
+<%= @user.full_name %>
+
+<p>年齢</p>
+<%= @user.age %>
+
+<p>プロフィール画像</p>
+<%= attachment_image_tag @user, :icon_image, :fill, 60, 60, fallback: "profile1.jpg", size: "40x40" %>
+
+<%= link_to "編集", edit_user_path(@user.id) %>
+
+
+
+
+</div>

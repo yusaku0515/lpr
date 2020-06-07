@@ -8,6 +8,7 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
 
 
+
     # 通知設定
     def create_notification_by(current_user)
         notification = current_user.active_notifications.new(
