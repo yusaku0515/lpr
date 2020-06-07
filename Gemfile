@@ -80,3 +80,6 @@ gem "refile-mini_magick"
 gem 'activeadmin'
 # 画像を複数枚アップロードする
 gem 'carrierwave'
+
+# デバッグ用
+gem 'pry-byebug'

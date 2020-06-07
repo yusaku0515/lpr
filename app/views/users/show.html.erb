@@ -1,8 +1,9 @@
 <div class="container">
 
+<% if @user.user_status == true %>
 
 <p>ユーザー名</p>
-<%= @user.full_name %>
+<%= @user.family_name %><%= @user.first_name %>
 
 <p>年齢</p>
 <%= @user.age %>
@@ -10,7 +11,35 @@
 <p>プロフィール画像</p>
 <%= attachment_image_tag @user, :icon_image, :fill, 60, 60, fallback: "profile1.jpg", size: "40x40" %>
 
+<% elsif @user.user_status == false %>
+
+ <p>企業名・団体名</p>
+ <%= @user.company_name %>
+
+ <p>郵便番号</p>
+ <%= @user.postal_code %>
+
+ <p>住所</p>
+ <%= @user.address %>
+
+ <p>電話番号</p>
+ <%= @user.phone_number %>
+
+ <p>ホームページURL</p>
+ <%= @user.hp_url %>
+
+ <p>アイコン画像</p>
+ <%= attachment_image_tag @user, :icon_image, :fill, 60, 60, fallback: "profile1.jpg", size: "40x40" %>
+
+ <p>自己紹介文</p>
+ <%= @user.introduction %>
+
+<% end %>
 <%= link_to "編集", edit_user_path(@user.id) %>
+
+<!-- 法人ユーザーはこの下に投稿一覧を表示する -->
+
+
 
 
 

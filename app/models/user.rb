@@ -16,8 +16,8 @@ class User < ApplicationRecord
 
   attachment :icon_image
 
-  def full_name
-    self.family_name + self.first_name
-  end
+  # def full_name
+  #   self.family_name + self.first_name
+  # end
 
 end

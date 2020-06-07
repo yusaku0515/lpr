@@ -2,9 +2,6 @@
 
 <h4>ユーザー情報編集</h4>
 
-<% if @user.user_status == true %>
-
-<!-- 一般ユーザーの情報編集 -->
 <%= form_for(@user) do |f| %>
  <% if @user.errors.any? %>
  <div id="error_explanation">
@@ -17,11 +14,21 @@
  </div>
  <% end %>
 
+<% if @user.user_status == true %>
+
+<!-- 一般ユーザーの情報編集 -->
+
  <p>名前</p>
  <%= f.label :（性） %><br />
- <%= f.text_field :family_name, placeholder:"family_name" %>
+ <%= f.text_field :family_name, placeholder:"family_name" %><br />
  <%= f.label :（性） %><br />
  <%= f.text_field :first_name, placeholder:"first_name" %>
+
+ <p>年齢</p>
+ <%= f.text_field :age, placeholder:"age" %>
+
+ <p>メールアドレス</p>
+ <%= f.email_field :email, autocomplete: "email" %>
 
  <p>アイコン画像</p>
  <%= f.attachment_field :icon_image %>
@@ -29,23 +36,12 @@
  <p>自己紹介文</p>
  <%= f.text_area :introduction %><br>
 
- <%= f.submit "変更内容を保存する" %>
-<% end %>
 
-<% else %>
+
+
+<% elsif @user.user_status == false %>
 
 <!-- 法人ユーザーの情報編集 -->
-<%= form_for(@user) do |f| %>
- <% if @user.errors.any? %>
- <div id="error_explanation">
-  <h2><%= @user.errors.count %>errors prohibited this obj from being saved:</h2>
-  <ul>
-   <% @user.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-   <% end %>
-  </ul>
- </div>
- <% end %>
 
  <p>企業名・団体名</p>
  <%= f.text_field :company_name, placeholder:"company_name" %>
@@ -68,11 +64,11 @@
  <p>自己紹介文</p>
  <%= f.text_area :introduction %><br>
 
+<% end %>
+
  <%= f.submit "変更内容を保存する" %>
-<% end %>
 
 <% end %>
-
-
+<%= link_to "退会する", users_leave_path(current_user.id), class: "btn btn-danger" %>
 
 </div>
