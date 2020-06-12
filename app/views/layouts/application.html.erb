@@ -21,11 +21,11 @@
         </button>
         <% if admin_user_signed_in? %>
           <%= link_to( admins_homes_top_path, :style=>"text-decoration: none;", data: {"turbolinks" => false}) do %>
-           <span class="rogo" style="color: white; text-decoration: none; font-size: 45px;">Nagano Cake</span>
+           <span class="rogo" style="color: white; text-decoration: none; font-size: 45px;">LPR</span>
          <% end %>
         <% else %>
           <%= link_to(("/"), :style=>"text-decoration: none;", data: {"turbolinks" => false}) do %>
-           <span class="rogo" style="color: white; text-decoration: none; font-size: 55px; padding-bottom: 50px;">Nagano Cake</span>
+           <span class="rogo" style="color: white; text-decoration: none; font-size: 55px; padding-bottom: 50px;">LPR</span>
          <% end %>
         <% end %>
       </div>
@@ -35,17 +35,28 @@
         <ul class="nav navbar-nav navbar-right" style="font-size: 16px">
           <!-- 会員ログイン後 -->
           <% if user_signed_in? %>
-            <li class="user" style="margin-right: 30px">ようこそ、　<%= current_user.family_name %><%= current_user.first_name %>　さん！</li>
-            <li><%= link_to "マイページ", user_path(current_user.id) %></li>
-            <li><%= link_to "お問い合わせ", user_path(current_user.id) %></li>
-            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-            <li><%= link_to "投稿する", new_post_path %></li>
-
-
-
-          <!-- 非ログイン -->
-          <% else %>
-
+            <% if current_user.user_status == true %>
+              <li class="user" style="margin-right: 30px">ようこそ、　<%= current_user.family_name %><%= current_user.first_name %>　さん！</li>
+              <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+              <li><%= link_to "お問い合わせ", contacts_new_path %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to "投稿する", new_post_path %></li>
+  <!-- 法人用のヘッダーメニュー必要 -->
+            <% else %>
+              <li class="user" style="margin-right: 30px">ようこそ、　<%= current_user.company_name %>　さん！</li>
+              <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+              <% if unchecked_notifications.any? %>
+    <i class="fa fa-circle" style="color: gold;"></i>
+<% end %>
+<li>
+    <%= link_to "NOTICE", notifications_path %>
+</li>
+              <li><%= link_to "お問い合わせ", contacts_new_path %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to "投稿する", new_post_path %></li>
+            <% end %>
+            <% else %>
+            <!-- 非ログイン -->
             <li><%= link_to "新規登録", new_user_registration_path, data: {"turbolinks" => false} %></li>
             <li><%= link_to "ログイン", new_user_session_path %></li>
           <% end %>

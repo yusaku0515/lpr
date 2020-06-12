@@ -78,8 +78,16 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
 gem 'activeadmin'
+gem 'active_admin_flat_skin' #activeadminのデザイン変更
+
 # 画像を複数枚アップロードする
 gem 'carrierwave'
 
 # デバッグ用
 gem 'pry-byebug'
+
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'jquery-rails'
+
+# タグ機能
+gem 'acts-as-taggable-on', '~> 6.0'

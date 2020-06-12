@@ -8,13 +8,22 @@ class CommentsController < ApplicationController
 	    @comment.user_id = current_user.id
 	    @comment_post = @comment.post
 	    if @comment.save
-	      #通知の作成
-	      @comment_post.create_notification_comment!(current_user, @comment.id)
-	      render :index
+	       #通知の作成
+		   @comment_post.create_notification_comment!(current_user, @comment.id)
+	       flash[:success] = "コメントしました"
+		   redirect_back(fallback_location: root_path)
+        else
+           flash[:success] = "コメントできませんでした"
+           redirect_back(fallback_location: root_path)
 	    end
     end
 
 	def destroy
 	end
-	
+
+	private
+
+    def comment_params
+      params.require(:comment).permit(:comment)
+    end
 end
