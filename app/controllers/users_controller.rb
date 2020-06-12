@@ -1,23 +1,9 @@
 class UsersController < ApplicationController
 
 
-
-	# def index
-
-	# end
-
 	def signup2
         @user = User.find(params[:id])
 	end
-
-
-    # def new
-
-    # end
-
-    # def create
-
-    # end
 
 	def show
 		@user = User.find(params[:id])
@@ -59,6 +45,6 @@ class UsersController < ApplicationController
 
 private
     def user_params
-    	params.require(:user).permit(:family_name, :first_name, :age, :icon_image, :introduction, :postal_code, :company_name, :address, :phone_number, :hp_url, :member_status)
+    	params.require(:user).permit(:family_name, :first_name, :age, :icon_image, :introduction, :postal_code, :company_name, :address, :phone_number, :hp_url, :member_status, :user_status)
     end
 end

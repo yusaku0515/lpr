@@ -1,22 +1,40 @@
 <div class="container">
-<h1>新規投稿</h1>
-<!-- form_for部分 -->
-<%= form_for(@post, url: posts_path) do |f| %>
+	<div class="row">
+		<div class="col-xs-2">
+		</div>
+		<div class="col-xs-6">
+			<h1>新規投稿</h1>
+			    <%#= form_with model: @post do |f| %>
+				<%= form_with model: @post, local:true do |f| %>
 
-    <h4>タイトル</h4>
-    <%= f.text_field :title %>
+			    <h4>タイトル</h4>
+			    <%= f.text_field :title %>
 
-    <h4>本文</h4>
-    <%= f.text_area :post_text %>
+			    <h4>本文</h4>
+			    <%= f.text_area :post_text %>
 
-<!--     <h4>都道府県</h4> -->
-	<%#= f.select :area_name, Local.area_names.keys.map {|k| [I18n.t("enums.local.area_name.#{k}"), k]} %>
+			    <h4>地域名（タグ）</h4>
+				    <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control" %>
 
-	<h4>画像</h4>
-	<%= f.file_field :post_images, multiple: true %>
+                <!-- enumバージョン(使用しない) -->
+			    <%#= f.fields_for :local do |i| %>
+				    <%#= i.select :area_name, Local.area_names.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
+                <%# end %>
+
+				<h4>画像</h4>
+				<%= f.attachment_field :post_images_images, multiple: true %>
 
 
-    <%= f.submit '投稿' %>
+				<%#= f.fields_for :post_images do |post_image| %>
+				     <%#= post_image.file_field :image %>
+				<%# end %>
 
-<% end %>
+
+			    <%= f.submit '投稿', class: "btn btn-primary" %>
+
+			<% end %>
+		</div>
+		<div class="col-xs-3">
+		</div>
+	</div>
 </div>

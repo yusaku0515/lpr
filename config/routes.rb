@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'contacts/new'
-  get 'contacts/create'
+  post 'contacts/create'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   resources :locals, only: [:create, :destroy]
 
-
+  get 'home/about' => 'homes#about'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

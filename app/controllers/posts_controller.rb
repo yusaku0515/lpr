@@ -3,14 +3,27 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    # 3.times { @post.post_image.build }
   end
 
   def index
-    @posts = Post.all
+    # タグ機能（絞り込み）
+    if params[:tag_name]
+       @posts = Post.tagged_with("#{params[:tag_name]}")
+    else
+      @posts = Post.all
+      render 'index'
+    end
   end
 
   def show
     @post = Post.find(params[:id])
+    @user = @post.user
+    # コメント機能
+    @comments = @post.comments
+    @comment = @post.comments.build
+    # いいね機能
+    @like = Like.new
   end
 
   def edit
@@ -19,18 +32,34 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.save
-    redirect_to posts_path
+    @post.user_id = current_user.id
+    if @post.save
+       redirect_to post_path(@post.id)
+    else
+       @posts = Post.all
+       render 'index'
+    end
   end
 
   def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+       redirect_to post_path(@post.id)
+    else
+       render 'edit'
+    end
   end
 
   def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to user_path(@user.id), notice: "商品を削除しました"
   end
 
   private
   def post_params
-    params.require(:post).permit(:title, :post_text, {post_images: []}, :user_id, :local_id)
+    params.require(:post).permit(:title, :post_text, {post_images_images: []}, :user_id, :tag_list)
   end
+
+
 end
