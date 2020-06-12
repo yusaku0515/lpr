@@ -27,13 +27,17 @@
 
 <div class="row">
   <div class="form-group">
-    <p class="col-xs-2">アイコン</p>
+    <p class="col-xs-2">投稿画像</p>
     <%= f.attachment_field :post_images_images, multiple: true %>
   </div>
 </div>
 
-
-
+<div class="row">
+  <div class="form-group">
+    <p class="col-xs-2">地域名（タグ）</p>
+    <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control" %>
+  </div>
+</div>
 
 <div class="row">
  <div class="form-group col-xs-2">
