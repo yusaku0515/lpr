@@ -46,8 +46,10 @@
               <li class="user" style="margin-right: 30px">ようこそ、　<%= current_user.company_name %>　さん！</li>
               <li><%= link_to "マイページ", user_path(current_user.id) %></li>
               <% if unchecked_notifications.any? %>
-    <i class="fa fa-circle" style="color: red;"></i>
-                <li><%= link_to "通知あり", notifications_path %></li>
+                <li><%= link_to notifications_path do %>
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="color: red;">通知あり</span>
+                </li>
+                <% end %>
               <% else %>
                 <li><%= link_to "通知なし", notifications_path %></li>
               <% end %>
