@@ -24,7 +24,12 @@ Rails.application.routes.draw do
   end
   get '/' => 'posts#index', as: 'root'
 
-  resources :notifications, only: [:index, :destroy]
+  resources :notifications, only: :index
+  resources :notifications do
+  collection do
+    delete 'destroy_all'
+  end
+end
 
   resources :locals, only: [:create, :destroy]
 
