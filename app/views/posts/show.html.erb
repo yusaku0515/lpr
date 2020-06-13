@@ -27,28 +27,22 @@
 			<% end %>
 
 			<!-- いいね機能 -->
-			いいね件数: <%= @post.likes.count %>
-			<% if current_user.already_liked?(@post) %>
-			  <%= button_to 'いいねを取り消す', post_like_path(@post), method: :delete %>
-			<% else %>
-			  <%= button_to 'いいね', post_likes_path(@post) %>
-			<% end %>
-			<h2>いいねしたユーザー</h2>
-			<% @post.liked_users.each do |user| %>
-			  <%= user.family_name %><%= user.first_name %>
-			<% end %>
-
+<% if user_signed_in? %>
+			<div id="likes_buttons">
+             <%= render 'likes/like', post: @post %>
+            </div>
+<% end %>
 			<!-- コメント機能 -->
 			<div class="comment-wrapper border-top　mb-10">
 			  <p class="mt-5">コメント一覧</p>
 			  <% @comments.each do |c| %>
 			    <div>
-			      <% unless c.user.blank? %>
-			        <a href="<%= user_path(c.user_id) %>"><%= image_tag c.user.icon_image.to_s,
-			          class:"rounded-circle icon_image mr-3 mb-3"%></a>
+			        <% unless c.user.blank? %>
+						<%= link_to user_path(c.user_id) do %>
+						<%= attachment_image_tag c.user, :icon_image, :fill, 100, 100, class:"rounded-circle icon_image mr-3 mb-3", fallback: "profile1.jpg", size: "100x100" %>
+						<% end %>
 			        <% end %>
-			      <%= c.user.first_name unless c.user.blank? %>
-			      <br>
+			      <%= c.user.family_name unless c.user.blank? %>
 			      <%= c.comment %>
 			    </div>
 			    <br>
@@ -63,10 +57,10 @@
 			  <% end %>
 			</div>
 
-			<%# if current_user.id == @posts.user_id %>
+			<% if current_user.id == @user_id %>
 				<%= link_to "編集", edit_post_path(@post.id) %>
 				<%= link_to "削除", post_path(@post.id), method: :delete %>
-			<%# end %>
+			<% end %>
 
 		</div>
 		<div class="col-xs-3">

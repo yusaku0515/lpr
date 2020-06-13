@@ -23,10 +23,12 @@
 					</tr>
 				</tbody>
 				</table>
+				<%= link_to "編集", edit_user_path(@user.id) %>
 </div>
 <div class="col-xs-5">
 				<h3>いいねしている投稿</h3>
 				<% @user.liked_posts.each do |post| %>
+				<%= link_to post_path(post.id) do %>
 					<%= post.title %>
 					<% if post.post_images.present? %>
 						<% post.post_images.each do |image| %>
@@ -34,6 +36,7 @@
 				    	<% end %>
 					<% else %>
 						<%= image_tag 'profile1.jpg', size: '200x200' %>
+					<% end %>
 					<% end %>
 				<% end %>
 </div>
@@ -76,10 +79,9 @@
 						<th>自己紹介文</th>
 						<td><%= @user.introduction %></td>
 						</tr>
-
+<%= link_to "編集", edit_user_path(@user.id) %>
 					</tbody>
 			</table>
-							<%= link_to "編集", edit_user_path(@user.id) %>
 </div>
 
 

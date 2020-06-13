@@ -91,3 +91,12 @@ gem 'jquery-rails'
 
 # タグ機能
 gem 'acts-as-taggable-on', '~> 6.0'
+
+# 非同期通信
+gem 'jquery-rails'
+
+# デプロイ
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
