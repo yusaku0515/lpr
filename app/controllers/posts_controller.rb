@@ -3,7 +3,6 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    # 3.times { @post.post_image.build }
   end
 
   def index
@@ -11,8 +10,8 @@ class PostsController < ApplicationController
     if params[:tag_name]
        @posts = Post.tagged_with("#{params[:tag_name]}")
     else
-      @posts = Post.all
-      render 'index'
+       @posts = Post.all
+       render 'index'
     end
   end
 
@@ -56,9 +55,10 @@ class PostsController < ApplicationController
     redirect_to user_path(@user.id), notice: "商品を削除しました"
   end
 
+
   private
   def post_params
-    params.require(:post).permit(:title, :post_text, {post_images_images: []}, :user_id, :tag_list)
+    params.require(:post).permit(:title, :post_text, {post_images_images: []}, :user_id, :tag_list, :star)
   end
 
 
