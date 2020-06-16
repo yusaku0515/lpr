@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :bookmarks, only: [:create, :destroy]
   end
   get '/' => 'posts#index', as: 'root'
+  get  'searched' => 'searches#search',  as: 'search'
 
   resources :notifications, only: :index
   resources :notifications do

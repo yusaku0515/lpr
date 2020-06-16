@@ -61,10 +61,17 @@
             <li><%= link_to "新規登録", new_user_registration_path, data: {"turbolinks" => false} %></li>
             <li><%= link_to "ログイン", new_user_session_path %></li>
           <% end %>
+
         </ul>
       </nav>
     </nav>
-
+          <!-- 検索機能 -->
+            <div class="text-right" style="margin-right: 20px; padding-bottom: 5px">
+              <%= form_tag(search_path, method: "get") do %>
+              <%= text_field_tag :keyword,  params[:keyword], placeholder:"投稿タイトルや紹介文から検索できます"%>
+                <%= submit_tag 'Search' %>
+              <% end %>
+            </div>
 
     <%= yield %>
     <!-- フッター部分 -->

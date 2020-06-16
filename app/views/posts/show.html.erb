@@ -35,21 +35,56 @@
 			<!-- コメント機能 -->
 			<div class="comment-wrapper border-top　mb-10">
 			  <p class="mt-5">コメント一覧</p>
-			  <% @comments.each do |c| %>
+			  <% @comments.each do |comment| %>
 			    <div>
-			        <% unless c.user.blank? %>
-						<%= link_to user_path(c.user_id) do %>
-						<%= attachment_image_tag c.user, :icon_image, :fill, 100, 100, class:"rounded-circle icon_image mr-3 mb-3", fallback: "profile1.jpg", size: "100x100" %>
+			        <% unless comment.user.blank? %>
+						<%= link_to user_path(comment.user_id) do %>
+						<%= attachment_image_tag comment.user, :icon_image, :fill, 100, 100, class:"rounded-circle icon_image mr-3 mb-3", fallback: "profile1.jpg", size: "100x100" %>
 						<% end %>
 			        <% end %>
-			      <%= c.user.family_name unless c.user.blank? %>
-			      <%= c.comment %>
+			        <%= comment.user.family_name unless comment.user.blank? %>
+			        <%= comment.comment %>
+			                <!--星評価-->
+		            <div id="star-rate-<%= comment.id %>"></div>
+		                <script>
+		                   $('#star-rate-<%= comment.id %>').raty({
+				            size: 36,
+				            starOff:  '<%= asset_path('star-off.png') %>',
+				            starOn : '<%= asset_path('star-on.png') %>',
+				            starHalf: '<%= asset_path('star-half.png') %>',
+				            half: true,
+				            readOnly: true,
+				            score: <%= comment.rate %>,
+				           });
+		                </script>
 			    </div>
 			    <br>
 			  <% end %>
+
 			  <% if user_signed_in? %>
 			    <%= form_with(model: [@post, @comment], local: true) do |f| %>
-			      <%= f.text_area :comment, class: "form-control", rows: 5 %>
+			      <div class="form-group row">
+			      	<%= f.label :comment, 'コメント' %>
+			        <%= f.text_area :comment, class: "form-control", rows: 5 %>
+				  </div>
+			        <!-- 評価 -->
+				  <div class="form-group row" id="star">
+				    <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
+				    <%= f.hidden_field :rate, id: :review_star %>
+				  </div>
+
+				  <!-- 評価javascript -->
+				  <script>
+				  $('#star').raty({
+				    size     : 36,
+				    starOff:  '<%= asset_path('star-off.png') %>',
+				    starOn : '<%= asset_path('star-on.png') %>',
+				    starHalf: '<%= asset_path('star-half.png') %>',
+				    scoreName: 'comment[rate]',
+				    half: true,
+				  });
+				  </script>
+
 			      <%= button_tag type: "submit", class: "btn btn-success float-right mt-1" do %>
 			        <i class="far fa-comments"></i> コメントする
 			      <% end %>
