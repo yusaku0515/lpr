@@ -4,7 +4,6 @@ acts_as_taggable
 
   belongs_to :user
 
-
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
@@ -17,7 +16,9 @@ acts_as_taggable
   has_many :post_images, dependent: :destroy
   accepts_attachments_for :post_images, attachment: :image
 
-
+  # バリデージョン
+  validates :post_text, presence: true
+  validates :title, presence: true
 
   def self.search(keyword)
      where(['title LIKE ? OR post_text LIKE ?', "%#{keyword}%", "%#{keyword}%"])

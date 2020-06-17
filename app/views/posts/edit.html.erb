@@ -5,7 +5,7 @@
     </div>
   </div>
 
-
+<%= render "users/shared/error_messages", resource: @post %>
 
 <%= form_for(@post, url: post_path) do |f| %>
 
