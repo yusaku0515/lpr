@@ -17,10 +17,7 @@ acts_as_taggable
   has_many :post_images, dependent: :destroy
   accepts_attachments_for :post_images, attachment: :image
 
-  validates :rate, numericality: {
-    less_than_or_equal_to: 5,
-    greater_than_or_equal_to: 1
-  }, presence: true
+
 
   def self.search(keyword)
      where(['title LIKE ? OR post_text LIKE ?', "%#{keyword}%", "%#{keyword}%"])
