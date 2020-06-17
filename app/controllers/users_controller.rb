@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+before_action :authenticate_user!,{only:[:edit]} #ログインしていないと見れない　アクセス権限　表示させたくない物を選択する
 
 	def signup2
         @user = User.find(params[:id])

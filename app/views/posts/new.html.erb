@@ -2,6 +2,8 @@
 	<div class="row">
 		<div class="col-xs-2">
 		</div>
+		<!-- エラー文表示 -->
+		<%= render "users/shared/error_messages", resource: @post %>
 		<div class="col-xs-6">
 			<h1>新規投稿</h1>
 			    <%#= form_with model: @post do |f| %>

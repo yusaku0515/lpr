@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-
+before_action :authenticate_user!,{only:[:edit]} #ログインしていないと見れない　アクセス権限　表示させたくない物を選択する
 
   def new
     @post = Post.new
@@ -33,17 +33,17 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-       redirect_to post_path(@post.id)
+       redirect_to post_path(@post.id), notice: "投稿しました"
     else
        @posts = Post.all
-       render 'index'
+       render 'new'
     end
   end
 
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-       redirect_to post_path(@post.id)
+       redirect_to post_path(@post.id), notice: "投稿の編集内容を更新しました"
     else
        render 'edit'
     end
@@ -52,13 +52,13 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to user_path(@user.id), notice: "商品を削除しました"
+    redirect_to root_path, notice: "投稿を削除しました"
   end
 
 
   private
   def post_params
-    params.require(:post).permit(:title, :post_text, {post_images_images: []}, :user_id, :tag_list, :star)
+    params.require(:post).permit(:title, :post_text, {post_images_images: []}, :user_id, :tag_list)
   end
 
 

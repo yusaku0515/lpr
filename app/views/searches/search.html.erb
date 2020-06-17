@@ -1,5 +1,6 @@
-<% @searched_posts.each do |post| %>
 <div style="text-align:center;">
+<h2>検索結果</h2>
+<% @searched_posts.each do |post| %>
 	<%= link_to post_path(post.id) do %>
         <%= post.title %><br>
 	<% end %>

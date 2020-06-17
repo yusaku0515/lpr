@@ -5,6 +5,13 @@
 		</div>
 		<div class="col-xs-6">
 
+			<!-- サクセスメッセージ -->
+			<% if flash[:notice] %>
+				<div class="flash">
+					<%= flash[:notice] %>
+				</div>
+			<% end %>
+
 			<h2>投稿詳細</h2>
 
             <h4>タイトル</h4>
@@ -27,11 +34,11 @@
 			<% end %>
 
 			<!-- いいね機能 -->
-<% if user_signed_in? %>
-			<div id="likes_buttons">
-             <%= render 'likes/like', post: @post %>
-            </div>
-<% end %>
+			<% if user_signed_in? %>
+				<div id="likes_buttons">
+		            <%= render 'likes/like', post: @post %>
+	            </div>
+			<% end %>
 			<!-- コメント機能 -->
 			<div class="comment-wrapper border-top　mb-10">
 			  <p class="mt-5">コメント一覧</p>
@@ -92,7 +99,7 @@
 			  <% end %>
 			</div>
 
-			<% if current_user.id == @user_id %>
+			<% if current_user.id == @post.user_id %>
 				<%= link_to "編集", edit_post_path(@post.id) %>
 				<%= link_to "削除", post_path(@post.id), method: :delete %>
 			<% end %>
