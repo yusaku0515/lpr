@@ -32,4 +32,4 @@
 
 /.env
 
-!/app/mailers/contact_mailer.rb
+/app/mailers/contact_mailer.rb
