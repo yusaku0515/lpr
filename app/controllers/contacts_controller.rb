@@ -6,7 +6,7 @@ def new
   def create
     @contact = Contact.new(contact_params)
     if @contact.save
-      ContactMailer.contact_mail(@contact).deliver
+      ContactMailer.contact_mail(@contact).deliver_now
       flash[:success] = 'お問い合わせを受け付けました'
       redirect_to root_path
     else
@@ -17,6 +17,6 @@ def new
   private
 
   def contact_params
-    params.require(:contact).permit(:email, :message)
+    params.permit(:email, :message) #require(:contact)は不要
   end
 end
