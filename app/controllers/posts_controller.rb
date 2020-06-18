@@ -10,7 +10,7 @@ before_action :authenticate_user!,{only:[:edit]} #ログインしていないと
     if params[:tag_name]
        @posts = Post.tagged_with("#{params[:tag_name]}")
     else
-       @posts = Post.all
+       @posts = Post.all.page(params[:page])
        render 'index'
     end
   end
