@@ -35,12 +35,12 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   # smtpの詳細設定
   config.action_mailer.smtp_settings = {
-    port:                 587,
-    address:              'smtp.gmail.com',
-    domain:               'gmail.com',
-    user_name:            'y.iwata0515@gmail.com',
-    password:             '5yusaku15',
-    authentication:       'plain',
+    port: 587,
+    address: 'smtp.gmail.com',
+    domain: 'gmail.com',
+    user_name: ENV['YOUR_EMAIL_ADDRESS'],
+    password: ENV['YOUR_EMAIL_PASSWORD'],
+    authentication: 'plain',
     enable_starttls_auto: true
   }
 

@@ -11,7 +11,7 @@ class ContactMailer < ApplicationMailer
     @contact = contact
     mail(
     from: 'system@example.com',
-    to: 'y.iwata0515@gmail.com',
+    to: ENV['YOUR_EMAIL_ADDRESS'],
     subject: 'お問い合わせ通知'
   )
   end
