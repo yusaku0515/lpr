@@ -1,6 +1,9 @@
 class Post < ApplicationRecord
-
+# タグ生成
 acts_as_taggable
+
+# PV値測定
+is_impressionable
 
   belongs_to :user
 
@@ -15,6 +18,9 @@ acts_as_taggable
 
   has_many :post_images, dependent: :destroy
   accepts_attachments_for :post_images, attachment: :image
+
+  # indexページを6個刻みに表示
+  paginates_per 6
 
   # バリデージョン
   validates :post_text, presence: true
