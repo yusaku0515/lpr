@@ -4,9 +4,12 @@
 		</div>
 		<div class="col-xs-6">
 <div id="post_lists">
-<%= render 'posts/list', posts: @posts %>
+<%= render partial: 'post_list', locals: { post: @posts } %>
 </div>
-<div class="more"><%= link_to_next_page @posts, 'もっと見る', remote: true, id: 'view_more' %></div>
+
+		<div class="more">
+			<%= link_to_next_page @posts, 'もっと見る', remote: true, id: 'view_more' %>
+		</div>
 
 
 		</div>

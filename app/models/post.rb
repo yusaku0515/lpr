@@ -1,6 +1,9 @@
 class Post < ApplicationRecord
-
+# タグ生成
 acts_as_taggable
+
+# PV値測定
+is_impressionable
 
   belongs_to :user
 

@@ -1,0 +1,29 @@
+<% comments.each do |comment| %>
+	<div>
+		<% unless comment.user.blank? %>
+			<%= link_to user_path(comment.user_id) do %>
+				<%= attachment_image_tag comment.user, :icon_image, :fill, 100, 100, class:"rounded-circle icon_image mr-3 mb-3", fallback: "profile1.jpg", size: "100x100" %>
+			<% end %>
+		<% end %>
+		<%= comment.user.family_name unless comment.user.blank? %>
+			<%= comment.comment %>
+			<% if comment.user == current_user %>
+				<%= link_to "削除", post_comment_path(comment.post_id, comment.id), method: :delete, remote: true %>
+			<% end %>
+
+		<!--星評価-->
+		<div id="star-rate-<%= comment.id %>"></div>
+		<script>
+		$('#star-rate-<%= comment.id %>').raty({
+		size: 36,
+		starOff:  '<%= asset_path('star-off.png') %>',
+		starOn : '<%= asset_path('star-on.png') %>',
+		starHalf: '<%= asset_path('star-half.png') %>',
+		half: true,
+		readOnly: true,
+		score: <%= comment.rate %>,
+		});
+		</script>
+	</div>
+	<br>
+<% end %>

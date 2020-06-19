@@ -11,14 +11,17 @@ class CommentsController < ApplicationController
 	       #通知の作成
 		   @comment_post.create_notification_comment!(current_user, @comment.id)
 	       flash[:success] = "コメントしました"
-		   redirect_back(fallback_location: root_path)
+		   render :index
         else
            flash[:success] = "コメントできませんでした"
-           redirect_back(fallback_location: root_path)
+		   redirect_to root_path
 	    end
     end
 
 	def destroy
+		@comment = Comment.find(params[:id])
+		@comment.destroy
+        render :index
 	end
 
 	private

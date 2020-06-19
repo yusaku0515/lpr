@@ -71,7 +71,7 @@ gem 'dotenv-rails'
 gem 'devise'
 
 # PV数を計測
-gem 'impressionist'
+gem 'impressionist', '~>1.6.1'
 
 # 画像アップロード
 gem "refile", require: "refile/rails", github: 'manfe/refile'

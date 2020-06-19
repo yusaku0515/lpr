@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-before_action :authenticate_user!,{only:[:edit]} #ログインしていないと見れない　アクセス権限　表示させたくない物を選択する
+before_action :authenticate_user!,{only:[:edit]} #ログインしていないと見れない アクセス権限 表示させたくない物を選択する
 
   def new
     @post = Post.new
@@ -10,14 +10,16 @@ before_action :authenticate_user!,{only:[:edit]} #ログインしていないと
     if params[:tag_name]
        @posts = Post.tagged_with("#{params[:tag_name]}")
     else
-       @posts = Post.all.page(params[:page])
-       render 'index'
+       @posts = Post.page(params[:page]).per(6)
     end
   end
 
   def show
     @post = Post.find(params[:id])
     @user = @post.user
+    # PV値測定
+    impressionist(@post, "message...")
+    @page_views = @post.impressionist_count(:filter=>:ip_address)
     # コメント機能
     @comments = @post.comments
     @comment = @post.comments.build
