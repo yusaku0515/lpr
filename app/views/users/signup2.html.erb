@@ -1,64 +1,107 @@
 <div class="container">
-<h2>新規会員登録２</h2>
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-6">
+      <h2>新規会員登録２</h2>
 
-<%= form_for(@user) do |f| %>
+      <%= form_for(@user) do |f| %>
 
-<% if @user.user_status == true %>
+      <% if @user.user_status == true %>
+<!-- 一般ユーザーの情報編集 -->
+        <div class="row">
+          <div class="form-group">
+            <p class="col-lg-3">名前</p>
+            <div class="col-lg-6" style="padding-bottom: 10px;">
+              <%= f.text_field :family_name, placeholder:"性" %><br />
+              <%= f.text_field :first_name, placeholder:"名" %>
+            </div>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= f.label :（性） %><br />
-    <%= f.text_field :family_name, autofocus: true, class: "name" %><br>
-    <%= f.label :（名） %><br />
-    <%= f.text_field :first_name, autofocus: true, class: "name" %>
+        <div class="row">
+          <div class="form-group">
+            <p class="col-lg-3">年齢</p>
+            <div class="col-lg-6" style="padding-bottom: 10px;">
+              <%= f.text_field :age %>
+            </div>
+          </div>
+        </div>
+
+      <% elsif @user.user_status == false %>
+
+
+<!-- 法人ユーザーの情報編集 -->
+        <div class="row">
+          <div class="form-group">
+            <p class="col-lg-3">企業名・団体名</p>
+            <div class="col-lg-5" style="padding-bottom: 10px;">
+              <%= f.text_field :company_name %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <p class="col-lg-3">郵便番号</p>
+            <div class="col-lg-5" style="padding-bottom: 10px;">
+              <%= f.text_field :postal_code %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <p class="col-lg-3">住所</p>
+            <div class="col-lg-9" style="padding-bottom: 10px;">
+              <%= f.text_field :address %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <p class="col-lg-3">電話番号</p>
+            <div class="col-lg-5" style="padding-bottom: 10px;">
+              <%= f.text_field :phone_number %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <p class="col-lg-3">ホームページURL</p>
+            <div class="col-lg-9" style="padding-bottom: 10px;">
+              <%= f.text_field :hp_url %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <p class="col-lg-3">アイコン画像</p>
+            <div class="col-lg-5" style="padding-bottom: 10px;">
+              <%= f.attachment_field :icon_image %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <p class="col-lg-3">自己紹介文</p>
+            <div class="col-lg-9" style="padding-bottom: 10px;">
+              <%= f.text_area :introduction %><br>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+
+        <div class="actions">
+          <%= f.submit "新規登録" %>
+        </div>
+
+      <% end %>
+    </div>
+    <div class="col-lg-2"></div>
   </div>
-
-  <div class="field">
-    <%= f.label :age %><br />
-    <%= f.text_field :age, autofocus: true, autocomplete: "age" %>
-  </div>
-
-<% elsif @user.user_status == false %>
-
-<div class="field">
-<%= f.label :企業名・団体名 %>
- <%= f.text_field :company_name, placeholder:"company_name" %>
-  </div>
-
-<div class="field">
-<%= f.label :郵便番号 %>
- <%= f.text_field :postal_code, placeholder:"postal_code" %>
-  </div>
-
- <div class="field">
-<%= f.label :住所 %>
- <%= f.text_field :address, placeholder:"address" %>
-  </div>
-
- <div class="field">
-<%= f.label :電話番号 %>
- <%= f.text_field :phone_number, placeholder:"phone_number" %>
-  </div>
-
- <div class="field">
-<%= f.label :ホームページURL %>
- <%= f.text_field :hp_url, placeholder:"hp_url" %>
-  </div>
-
- <div class="field">
-<%= f.label :アイコン画像 %>
- <%= f.attachment_field :icon_image %>
-  </div>
-
- <div class="field">
-<%= f.label :自己紹介文 %>
- <%= f.text_area :introduction %><br>
-  </div>
-
-<% end %>
-
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
-
-<% end %>
 </div>

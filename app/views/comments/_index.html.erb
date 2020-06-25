@@ -8,7 +8,7 @@
 		<%= comment.user.family_name unless comment.user.blank? %>
 			<%= comment.comment %>
 			<% if comment.user == current_user %>
-				<%= link_to "削除", post_comment_path(comment.post_id, comment.id), method: :delete, remote: true %>
+				<button><%= link_to "削除", post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, :style=>"color:white; text-decoration: none;" %></button>
 			<% end %>
 
 		<!--星評価-->

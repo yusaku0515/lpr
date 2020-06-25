@@ -4,7 +4,7 @@
 <% else %>
   <%= button_to 'いいね', post_likes_path(post), method: :post, remote: true %>
 <% end %>
-<h2>いいねしたユーザー</h2>
+<h4>いいねしたユーザー</h4>
 <% @post.liked_users.each do |user| %>
   <%= user.family_name %><%= user.first_name %>
 <% end %>

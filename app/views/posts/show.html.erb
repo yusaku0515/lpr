@@ -1,8 +1,8 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-xs-4"></div>
-		<div class="col-xs-6">
+		<div class="col-lg-3"></div>
+		<div class="col-lg-5">
 
 			<!-- サクセスメッセージ -->
 			<% if flash[:notice] %>
@@ -26,7 +26,7 @@
 			<!-- 画像表示 -->
 			<% if @post.post_images.present? %>
 				<% @post.post_images.each do |image| %>
-				    <%= attachment_image_tag image, :image, :fill, 200, 200 %><br>
+				    <%= attachment_image_tag image, :image, :style => "width: 100%; height: 100%;" %><br>
 		    	<% end %>
 			<% else %>
 				<%= image_tag 'profile1.jpg', size: '200x200' %>
@@ -41,13 +41,13 @@
 		            <%= render 'likes/like', post: @post %>
 	            </div>
 			<% end %>
-			<!-- コメント一覧機能 -->
+			<!-- コメント一覧 -->
 			<div class="comment-wrapper border-top　mb-10">
-			  <p class="mt-5">コメント一覧</p>
+			  <h4 class="mt-5">コメント一覧</h4>
 
-				<li id="comments_area">
+				<div id="comments_area">
 					<%= render partial: 'comments/index', locals: { comments: @comments } %>
-				</li>
+				</div>
 				<!-- コメント投稿フォーム -->
 			  <% if user_signed_in? %>
 			   <%= render partial: 'comments/form' %>
@@ -55,11 +55,13 @@
 			</div>
 
 			<% if current_user.id == @post.user_id %>
-				<%= link_to "編集", edit_post_path(@post.id) %>
-				<%= link_to "削除", post_path(@post.id), method: :delete %>
+			<div style="margin: 10px, 10px, 10px, 0px;">
+				<button><%= link_to "編集", edit_post_path(@post.id), :style=>"color:white; text-decoration: none;" %></button>
+				<button><%= link_to "削除", post_path(@post.id), method: :delete, :style=>"color:white; text-decoration: none;" %></button>
+			</div>
 			<% end %>
 
 		</div>
-		<div class="col-xs-3"></div>
+		<div class="col-lg-2"></div>
 	</div>
 </div>
