@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-before_action :authenticate_user!,{only:[:edit]} #ログインしていないと見れない アクセス権限 表示させたくない物を選択する
+before_action :authenticate_user!,{only:[:edit, :show]} #ログインしていないと見れない アクセス権限 表示させたくない物を選択する
 
   def new
     @post = Post.new
@@ -8,7 +8,7 @@ before_action :authenticate_user!,{only:[:edit]} #ログインしていないと
   def index
     # タグ機能（絞り込み）
     if params[:tag_name]
-       @posts = Post.tagged_with("#{params[:tag_name]}")
+       @posts = Post.tagged_with(params[:tag_name]).page(params[:page]).per(6)
     else
        @posts = Post.page(params[:page]).per(6)
     end

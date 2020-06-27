@@ -10,11 +10,9 @@ class CommentsController < ApplicationController
 	    if @comment.save
 	       #通知の作成
 		   @comment_post.create_notification_comment!(current_user, @comment.id)
-	       flash[:success] = "コメントしました"
-		   render :index
+		   render :index, notice: "コメントしました"
         else
-           flash[:success] = "コメントできませんでした"
-		   redirect_to root_path
+		   redirect_to root_path, notice: "コメントできませんでした"
 	    end
     end
 
