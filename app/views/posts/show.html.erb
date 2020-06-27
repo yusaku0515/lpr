@@ -13,6 +13,13 @@
 
 			<h2>投稿詳細</h2>
 
+			<div class="text-right">
+				<% if current_user.id == @post.user_id %>
+					<button><%= link_to "編集", edit_post_path(@post.id), :style=>"color:white; text-decoration: none;" %></button>
+					<button><%= link_to "削除", post_path(@post.id), method: :delete, :style=>"color:white; text-decoration: none;" %></button>
+				<% end %>
+			</div>
+
             <h4>タイトル</h4>
 			<%= @post.title %>
 
@@ -54,12 +61,7 @@
 			  <% end %>
 			</div>
 
-			<% if current_user.id == @post.user_id %>
-			<div style="margin: 10px, 10px, 10px, 0px;">
-				<button><%= link_to "編集", edit_post_path(@post.id), :style=>"color:white; text-decoration: none;" %></button>
-				<button><%= link_to "削除", post_path(@post.id), method: :delete, :style=>"color:white; text-decoration: none;" %></button>
-			</div>
-			<% end %>
+
 
 		</div>
 		<div class="col-lg-2"></div>

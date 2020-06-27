@@ -1,19 +1,23 @@
 <div class="container">
 	<div class="row">
-		<div class="col-xs-3">
-		</div>
+		<div class="col-xs-3"></div>
 		<div class="col-xs-6">
-<div id="post_lists">
-<%= render partial: 'post_list', locals: { post: @posts } %>
-</div>
 
-		<div class="more">
-			<%= link_to_next_page @posts, 'もっと見る', remote: true, id: 'view_more' %>
-		</div>
+			<!-- サクセスメッセージ -->
+			<% if flash[:notice] %>
+				<div class="flash">
+					<%= flash[:notice] %>
+				</div>
+			<% end %>
 
+			<div id="post_lists">
+			<%= render partial: 'post_list', locals: { post: @posts } %>
+			</div>
 
+			<div class="more">
+				<%= link_to_next_page @posts, 'もっと見る', remote: true, id: 'view_more' %>
+			</div>
 		</div>
-		<div class="col-xs-3">
-		</div>
+		<div class="col-xs-3"></div>
 	</div>
 </div>
