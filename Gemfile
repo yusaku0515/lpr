@@ -71,12 +71,35 @@ gem 'dotenv-rails'
 gem 'devise'
 
 # PV数を計測
-gem 'impressionist'
+gem 'impressionist', '~>1.6.1'
 
 # 画像アップロード
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
 gem 'activeadmin'
+gem 'active_admin_flat_skin' #activeadminのデザイン変更
+
 # 画像を複数枚アップロードする
 gem 'carrierwave'
+
+# デバッグ用
+gem 'pry-byebug'
+
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'jquery-rails'
+
+# タグ機能
+gem 'acts-as-taggable-on', '~> 6.0'
+
+# 非同期通信
+gem 'jquery-rails'
+
+# デプロイ
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
+
+gem 'kaminari'
+

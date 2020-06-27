@@ -1,18 +1,113 @@
+
 <div class="container">
+	<div class="row">
+		<!-- 一般ユーザー -->
+		<% if @user.user_status == true %>
+			<div class="col-xs-12 col-sm-7">
+			<h3>ユーザー詳細</h3>
+			<table class="table table-striped">
+				<tbody>
+					<tr>
+						<th>ユーザー名</th>
+						<td><%= @user.family_name %><%= @user.first_name %></td>
+					</tr>
+					<tr>
+						<th>年齢</th>
+						<td><%= @user.age %></td>
+					</tr>
+					<tr>
+						<th>プロフィール画像</th>
+						<td><%= attachment_image_tag @user, :icon_image, :fill, 200, 200, fallback: "profile1.jpg", size: "200x200" %></td>
+					</tr>
+					<tr>
+						<th>自己紹介文</th>
+						<td><%= @user.introduction %></td>
+					</tr>
+				</tbody>
+			</table>
+			<button><%= link_to "編集", edit_user_path(@user.id), :style=>"color:white; text-decoration: none;" %></button>
+			</div>
+			<div class="col-xs-12 col-sm-5">
+			<h3>いいねしている投稿</h3>
+				<% @user.liked_posts.each do |post| %>
+					<div style="text-align:center; margin-top: 15px; border-bottom: 1px solid black; padding-bottom: 15px;">
+						<%= link_to post_path(post.id) do %>
+							<%= post.title %><br>
+							<% if post.post_images.present? %>
+								<% post.post_images.each do |image| %>
+							    <%= attachment_image_tag image, :image, :fill, 200, 200, fallback: "profile1.jpg", size: "200x200" %><br>
+						    	<% end %>
+							<% else %>
+								<%= image_tag 'profile1.jpg', size: '200x200' %>
+							<% end %>
+						<% end %>
+					</div>
+				<% end %>
+			</div>
+			<!-- 法人ユーザー -->
+			<% elsif @user.user_status == false %>
+				<div class="col-xs-12 col-sm-5">
+				<h3>ユーザー詳細</h3>
+					<table class="table table-striped">
+						<tbody>
+							<tr>
+								<th>企業名・団体名</th>
+								<td><%= @user.company_name %></td>
+							</tr>
 
+							<tr>
+								<th>郵便番号</th>
+								<td><%= @user.postal_code %></td>
+							</tr>
 
-<p>ユーザー名</p>
-<%= @user.full_name %>
+							<tr>
+								<th>住所</th>
+								<td><%= @user.address %></td>
+							</tr>
 
-<p>年齢</p>
-<%= @user.age %>
+							<tr>
+								<th>電話番号</th>
+								<td><%= @user.phone_number %></td>
+							</tr>
 
-<p>プロフィール画像</p>
-<%= attachment_image_tag @user, :icon_image, :fill, 60, 60, fallback: "profile1.jpg", size: "40x40" %>
+							<tr>
+								<th>ホームページURL</th>
+								<td><%= @user.hp_url %></td>
+							</tr>
 
-<%= link_to "編集", edit_user_path(@user.id) %>
+							<tr>
+								<th>アイコン画像</th>
+								<td><%= attachment_image_tag @user, :icon_image, :fill, 200, 200, fallback: "profile1.jpg", size: "200x200" %></td>
+							</tr>
 
+							<tr>
+								<th>自己紹介文</th>
+								<td><%= @user.introduction %></td>
+							</tr>
+						</tbody>
+					</table>
+					<button><%= link_to "編集", edit_user_path(@user.id), :style=>"color:white; text-decoration: none;" %></button>
+				</div>
+				<div class="col-xs-12 col-sm-5">
+				<h3>投稿一覧</h3>
+				<% @user.posts.each do |post| %>
+					<div style="text-align:center; margin-top: 15px; border-bottom: 1px solid black; padding-bottom: 15px;">
+					<%= link_to post_path(post.id) do %>
+						<%= post.title %><br>
+					<% end %>
+					<% if post.post_images.present? %>
+						<% post.post_images.each do |image| %>
+						    <%= attachment_image_tag image, :image, :fill, 200, 200, fallback: "profile1.jpg", size: "200x200" %><br>
+				    	<% end %>
+					<% else %>
+						<%= image_tag 'profile1.jpg', size: '200x200' %>
+					<% end %>
+				</div>
+				<% end %>
+				<button><%= link_to "ホームへ戻る", root_path, :style=>"color:white; text-decoration: none;" %></button>
+			<% end %>
+		</div>
 
-
-
+	</div>
 </div>
+

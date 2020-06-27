@@ -6,9 +6,14 @@ class User < ApplicationRecord
 
   has_many :bookmarks, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :likes, dependent: :destroy
-  has_many :posts, dependent: :destroy
 
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post
+  def already_liked?(post)
+    self.likes.exists?(post_id: post.id)
+  end
+
+  has_many :posts, dependent: :destroy
 
   # 通知機能
   has_many :active_notifications, class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
@@ -16,8 +21,7 @@ class User < ApplicationRecord
 
   attachment :icon_image
 
-  def full_name
-    self.family_name + self.first_name
-  end
+  # バリデーション
+  validates :encrypted_password, confirmation: true, length: { minimum: 6 } #パスワードが確認用と一致しているか
 
 end

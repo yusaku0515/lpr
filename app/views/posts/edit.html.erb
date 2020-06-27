@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <h2>投稿情報編集</h2>
+    </div>
+  </div>
+
+<%= render "users/shared/error_messages", resource: @post %>
+
+
+<%= form_for(@post, url: post_path) do |f| %>
+
+
+
+<div class="row" style="margin: 10px;">
+  <div class="form-group">
+    <p class="col-lg-2">タイトル</p>
+    <div class="col-lg-5">
+    <%= f.text_field :title %>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin: 10px;">
+  <div class="form-group">
+   <p class="col-lg-2">本文</p>
+   <div class="col-lg-9">
+   <%= f.text_area :post_text, :size=>"60x6" %>
+ </div>
+  </div>
+</div>
+
+<div class="row" style="margin: 10px;">
+  <div class="form-group">
+    <p class="col-lg-2">投稿画像</p>
+    <div class="col-lg-5">
+    <%= f.attachment_field :post_images_images, multiple: true %>
+  </div>
+  </div>
+</div>
+
+<div class="row" style="margin: 10px;">
+  <div class="form-group">
+    <p class="col-lg-2">地域名（タグ）</p>
+    <div class="col-lg-6">
+    <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control" %>
+  </div>
+  </div>
+</div>
+
+<div class="row" style="margin: 10px;">
+ <div class="form-group col-lg-2">
+  <div style="margin-bottom: 60px;">
+   <%= f.submit '変更を保存する', class: "btn btn-primary" %>
+  </div>
+ </div>
+</div>
+
+<% end %>
+
+
+</div>

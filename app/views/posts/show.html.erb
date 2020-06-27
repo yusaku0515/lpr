@@ -1,0 +1,69 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3"></div>
+		<div class="col-lg-5">
+
+			<!-- サクセスメッセージ -->
+			<% if flash[:notice] %>
+				<div class="flash">
+					<%= flash[:notice] %>
+				</div>
+			<% end %>
+
+			<h2>投稿詳細</h2>
+
+			<div class="text-right">
+				<% if current_user.id == @post.user_id %>
+					<button><%= link_to "編集", edit_post_path(@post.id), :style=>"color:white; text-decoration: none;" %></button>
+					<button><%= link_to "削除", post_path(@post.id), method: :delete, :style=>"color:white; text-decoration: none;" %></button>
+				<% end %>
+			</div>
+
+            <h4>タイトル</h4>
+			<%= @post.title %>
+
+			<h4>本文</h4>
+			<%= @post.post_text %><br>
+
+			<!-- タグ機能 -->
+			<h4>タグ</h4>
+			<%= render 'posts/tag_list', tag_list: @post.tag_list %><br>
+
+			<!-- 画像表示 -->
+			<% if @post.post_images.present? %>
+				<% @post.post_images.each do |image| %>
+				    <%= attachment_image_tag image, :image, :style => "width: 100%; height: 100%;" %><br>
+		    	<% end %>
+			<% else %>
+				<%= image_tag 'profile1.jpg', size: '200x200' %>
+			<% end %>
+
+			<!-- PV値表示 -->
+			観覧数：<%= number_with_delimiter(@page_views) %>
+
+			<!-- いいね機能 -->
+			<% if user_signed_in? %>
+				<div id="likes_buttons">
+		            <%= render 'likes/like', post: @post %>
+	            </div>
+			<% end %>
+			<!-- コメント一覧 -->
+			<div class="comment-wrapper border-top　mb-10">
+			  <h4 class="mt-5">コメント一覧</h4>
+
+				<div id="comments_area">
+					<%= render partial: 'comments/index', locals: { comments: @comments } %>
+				</div>
+				<!-- コメント投稿フォーム -->
+			  <% if user_signed_in? %>
+			   <%= render partial: 'comments/form' %>
+			  <% end %>
+			</div>
+
+
+
+		</div>
+		<div class="col-lg-2"></div>
+	</div>
+</div>

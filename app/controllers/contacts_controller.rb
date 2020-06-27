@@ -17,6 +17,6 @@ def new
   private
 
   def contact_params
-    params.require(:contact).permit(:email, :message)
+    params.permit(:email, :message) #require(:contact)は不要
   end
 end

@@ -1,0 +1,15 @@
+<% post.each do |post| %>
+<div style="text-align: center; margin-top: 15px; border-bottom: 1px solid black; padding-bottom: 15px;">
+	<%= link_to post_path(post.id) do %>
+        <%= post.title %><br>
+	<% end %>
+	<% if post.post_images.present? %>
+		<% post.post_images.each do |image| %>
+		    <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+    	<% end %>
+	<% else %>
+		<%= image_tag 'profile1.jpg', size: '200x200' %>
+	<% end %><br>
+	<%= post.liked_users.count %>いいね
+</div>
+<% end %>
