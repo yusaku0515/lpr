@@ -66,6 +66,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailer.raise_delivery_errors = true #メールの送信に失敗した時エラーを出す
+  config.action_mailer.default_url_options = {  :host => 'http://54.150.230.193/' }
   config.action_mailer.delivery_method = :smtp
   # smtpの詳細設定
   config.action_mailer.smtp_settings = {
