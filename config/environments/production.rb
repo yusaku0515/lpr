@@ -66,7 +66,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailer.raise_delivery_errors = true #メールの送信に失敗した時エラーを出す
-  config.action_mailer.default_url_options = {  :host => 'http://54.150.230.193/' }
+  config.action_mailer.default_url_options = {  :host => 'http://54.150.230.193/' } #deviseが認証用のURLなどを生成するのに必要になる?
   config.action_mailer.delivery_method = :smtp
   # smtpの詳細設定
   config.action_mailer.smtp_settings = {
@@ -75,7 +75,7 @@ Rails.application.configure do
     domain: 'gmail.com',
     user_name: ENV['YOUR_EMAIL_ADDRESS'],
     password: ENV['YOUR_EMAIL_PASSWORD'],
-    authentication: 'plain',
+    authentication: :login,
     enable_starttls_auto: true
   }
 
