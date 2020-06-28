@@ -65,22 +65,17 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  #deviseが認証用のURLなどを生成するのに必要になる（らしい）
-  config.action_mailer.default_url_options = {  :host => 'http://ipアドレス'or'ドメイン名' }
-  #送信方法を指定（この他に:sendmail/:file/:testなどがあります)
+  config.action_mailer.raise_delivery_errors = true #メールの送信に失敗した時エラーを出す
   config.action_mailer.delivery_method = :smtp
-  #送信方法として:smtpを指定した場合は、このconfigを使って送信詳細の設定を行います
+  # smtpの詳細設定
   config.action_mailer.smtp_settings = {
-    #gmail利用時はaddress,domain,portは下記で固定
-    address:"smtp.gmail.com",
+    port: 587,
+    address: 'smtp.gmail.com',
     domain: 'gmail.com',
-    port:587,
-    #gmailのユーザアカウント（xxxx@gmail.com)※念のため、credentials.yml.enc行き
     user_name: ENV['YOUR_EMAIL_ADDRESS'],
-    #gmail２段階認証回避のためにアプリケーションでの利用パスワードを取得、必ずcredentials.yml.endに設定を！！
     password: ENV['YOUR_EMAIL_PASSWORD'],
-    #パスワードをBase64でエンコード
-    authentication: :login
+    authentication: 'plain',
+    enable_starttls_auto: true
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
