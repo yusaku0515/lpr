@@ -31,16 +31,17 @@
           <!-- 会員ログイン後 一般ユーザー -->
           <% if user_signed_in? %>
             <% if current_user.user_status == true %>
-              <li class="user" style="margin-right: 30px; color: white;">ようこそ、　<%= current_user.family_name %><%= current_user.first_name %>　さん！</li>
+              <li class="user" style="margin-right: 30px; color: white; font-size: 20px;">ようこそ、　<%= current_user.family_name %><%= current_user.first_name %>　さん！</li>
               <li><%= link_to "LPRとは？", home_about_path %></li>
               <li><%= link_to "マイページ", user_path(current_user.id) %></li>
               <li><%= link_to "お問い合わせ", contacts_new_path %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
             <% else %>
               <!-- 会員ログイン後 法人ユーザー -->
-              <li class="user" style="margin-right: 30px; color: white;">ようこそ、　<%= current_user.company_name %>　さん！</li>
+              <li class="user" style="margin-right: 30px; color: white; font-size: 20px;">ようこそ、　<%= current_user.company_name %>　さん！</li>
               <li><%= link_to "LPRとは？", home_about_path %></li>
               <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+              <li><%= link_to "投稿する", new_post_path %></li>
               <% if unchecked_notifications.any? %>
                 <li><%= link_to notifications_path do %>
                   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="color: red;">通知あり</span>
@@ -51,13 +52,12 @@
               <% end %>
               <li><%= link_to "お問い合わせ", contacts_new_path %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-              <li><%= link_to "投稿する", new_post_path %></li>
             <% end %>
             <% else %>
             <!-- 非ログイン -->
+            <li><%= link_to "LPRとは？", home_about_path %></li>
             <li><%= link_to "新規登録", new_user_registration_path, data: {"turbolinks" => false} %></li>
             <li><%= link_to "ログイン", new_user_session_path %></li>
-            <li><%= link_to "LPRとは？", home_about_path %></li>
           <% end %>
 
         </ul>
