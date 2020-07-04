@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_18_110822) do
+ActiveRecord::Schema.define(version: 2020_07_02_071958) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(version: 2020_06_18_110822) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "taggings_count", default: 0
+    t.integer "post_id"
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 

@@ -35,8 +35,10 @@ before_action :authenticate_user!,{only:[:edit, :show]} #ログインしてい�
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      tags = Vision.get_image_data(@post.post_images)
-      tags.each do |tag|
+      @post.post_images.each do |image|
+        @tags = Vision.get_image_data(image.image)
+      end
+      @tags.each do |tag|
         @post.tags.create(name: tag)
       end
        redirect_to post_path(@post.id), notice: "投稿しました"
