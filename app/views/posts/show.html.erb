@@ -20,6 +20,11 @@
 				<% end %>
 			</div>
 
+			<h4>投稿者名</h4>
+			<%= link_to user_path(@user) do %>
+				<%= @user.company_name %>
+			<% end %>
+
             <h4>タイトル</h4>
 			<%= @post.title %>
 
