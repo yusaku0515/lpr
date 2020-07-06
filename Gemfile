@@ -65,7 +65,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # 検索機能
 gem 'ransack'
 
-# 環境変数化
+# 環境変数を用いる為に使用
 gem 'dotenv-rails'
 
 gem 'devise'

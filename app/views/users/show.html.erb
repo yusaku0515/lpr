@@ -1,4 +1,3 @@
-
 <div class="container">
 	<div class="row">
 		<!-- 一般ユーザー -->
@@ -29,20 +28,7 @@
 			</div>
 			<div class="col-xs-12 col-sm-5">
 			<h3>いいねしている投稿</h3>
-				<% @user.liked_posts.each do |post| %>
-					<div style="text-align:center; margin-top: 15px; border-bottom: 1px solid black; padding-bottom: 15px;">
-						<%= link_to post_path(post.id) do %>
-							<%= post.title %><br>
-							<% if post.post_images.present? %>
-								<% post.post_images.each do |image| %>
-							    <%= attachment_image_tag image, :image, :fill, 200, 200, fallback: "profile1.jpg", size: "200x200" %><br>
-						    	<% end %>
-							<% else %>
-								<%= image_tag 'profile1.jpg', size: '200x200' %>
-							<% end %>
-						<% end %>
-					</div>
-				<% end %>
+				<%= render partial: 'post_like_list', locals: { user: @user } %>
 			</div>
 			<!-- 法人ユーザー -->
 			<% elsif @user.user_status == false %>
@@ -90,24 +76,14 @@
 				</div>
 				<div class="col-xs-12 col-sm-5">
 				<h3>投稿一覧</h3>
-				<% @user.posts.each do |post| %>
-					<div style="text-align:center; margin-top: 15px; border-bottom: 1px solid black; padding-bottom: 15px;">
-					<%= link_to post_path(post.id) do %>
-						<%= post.title %><br>
-					<% end %>
-					<% if post.post_images.present? %>
-						<% post.post_images.each do |image| %>
-						    <%= attachment_image_tag image, :image, :fill, 200, 200, fallback: "profile1.jpg", size: "200x200" %><br>
-				    	<% end %>
-					<% else %>
-						<%= image_tag 'profile1.jpg', size: '200x200' %>
-					<% end %>
+				<div id="post_lists">
+					<%= render partial: 'posts/post_list', locals: { post: @posts } %>
 				</div>
-				<% end %>
+				<div class="more">
+					<%= link_to_next_page @posts, 'もっと見る', remote: true, id: 'view_more' %>
+				</div>
 				<button><%= link_to "ホームへ戻る", root_path, :style=>"color:white; text-decoration: none;" %></button>
 			<% end %>
 		</div>
-
 	</div>
 </div>
-
