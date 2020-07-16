@@ -68,15 +68,17 @@ gem 'ransack'
 # 環境変数化
 gem 'dotenv-rails'
 
+# ユーザー登録
 gem 'devise'
 
 # PV数を計測
 gem 'impressionist', '~>1.6.1'
 
-# 画像アップロード
+# 画像アップロード（複数）
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
+# アドミン作成用
 gem 'activeadmin'
 gem 'active_admin_flat_skin' #activeadminのデザイン変更
 
@@ -86,6 +88,7 @@ gem 'carrierwave'
 # デバッグ用
 gem 'pry-byebug'
 
+# bootstrap
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 
@@ -101,5 +104,6 @@ group :production do
   gem 'mysql2'
 end
 
+# ページネーション
 gem 'kaminari'
 
