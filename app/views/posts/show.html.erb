@@ -20,14 +20,19 @@
 				<% end %>
 			</div>
 
+			<h4>投稿者名</h4>
+			<%= link_to user_path(@user) do %>
+				<%= @user.company_name %>
+			<% end %>
+
             <h4>タイトル</h4>
 			<%= @post.title %>
 
 			<h4>本文</h4>
 			<%= @post.post_text %><br>
 
-			<!-- タグ機能 -->
-			<h4>タグ</h4>
+			<!-- タグ機能 --><!-- google vision api -->
+			<h4>都道府県、地域名、キーワード(AIが画像を元に算出します)</h4>
 			<%= render 'posts/tag_list', tag_list: @post.tag_list %><br>
 
 			<!-- 画像表示 -->

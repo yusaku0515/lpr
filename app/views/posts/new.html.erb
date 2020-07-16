@@ -14,8 +14,8 @@
 			    <h4>本文</h4>
 			    <%= f.text_area :post_text %>
 
-			    <h4>地域名（タグ）</h4>
-				    <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control" %>
+			    <h4>都道府県、地域名等</h4>
+				    <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control", autocomplete: ",で区切ってもらうと複数入力する事ができます" %>
 
                 <!-- enumバージョン(使用しない) -->
 			    <%#= f.fields_for :local do |i| %>
@@ -31,7 +31,7 @@
 				<%# end %>
 
 
-			    <%= f.submit '投稿', class: "btn btn-primary" %>
+			    <%= f.submit '投稿', :style=>"margin-top:10px;" %>
 
 			<% end %>
 		</div>
