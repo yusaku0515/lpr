@@ -76,12 +76,21 @@
 				</div>
 				<div class="col-xs-12 col-sm-5">
 				<h3>投稿一覧</h3>
-				<div id="post_lists">
-					<%= render partial: 'posts/post_list', locals: { post: @posts } %>
-				</div>
-				<div class="more">
-					<%= link_to_next_page @posts, 'もっと見る', remote: true, id: 'view_more' %>
-				</div>
+				<% @user.posts.each do |post| %>
+					<div style="text-align:center; margin-top: 15px; border-bottom: 1px solid black; padding-bottom: 15px;">
+						<%= link_to post_path(post.id) do %>
+							<%= post.title %><br>
+						<% end %>
+						<% if post.post_images.present? %>
+							<% post.post_images.each do |image| %>
+							    <%= attachment_image_tag image, :image, :fill, 200, 200, fallback: "profile1.jpg", size: "200x200" %><br>
+					    	<% end %>
+						<% else %>
+							<%= image_tag 'profile1.jpg', size: '200x200' %>
+						<% end %>
+						<%= post.liked_users.count %>いいね
+					</div>
+				<% end %>
 				<button><%= link_to "ホームへ戻る", root_path, :style=>"color:white; text-decoration: none;" %></button>
 			<% end %>
 		</div>
