@@ -12,5 +12,20 @@
 		<% end %><br>
 		<%= post.liked_users.count %>いいね
 
+
+<!-- 		<div id="star-rate-<%= @comments.id %>">評価</div>
+		<script>
+			$('#star-rate-<%= @comments.id %>').raty({
+			size: 36,
+			starOff:  '<%#= asset_path('star-off.png') %>',
+			starOn : '<%#= asset_path('star-on.png') %>',
+			starHalf: '<%#= asset_path('star-half.png') %>',
+			half: true,
+			readOnly: true,
+			score: "#{comment.average(:rate).to_f.round(1)}",
+			});
+		</script> -->
+
+
 	</div>
 <% end %>

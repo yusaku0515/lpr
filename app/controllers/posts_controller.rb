@@ -10,7 +10,7 @@ before_action :authenticate_user!,{only:[:edit, :show]} #ログインしてい�
     if params[:tag_name]
        @posts = Post.tagged_with(params[:tag_name]).page(params[:page]).per(6)
     else
-       @posts = Post.page(params[:page]).per(6)
+       @posts = Post.all.page(params[:page]).per(6)
     end
   end
 
@@ -35,6 +35,12 @@ before_action :authenticate_user!,{only:[:edit, :show]} #ログインしてい�
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
+      @post.post_images.each do |image|
+        @tags = Vision.get_image_data(image.image)
+      end
+      @tags.each do |tag|
+        @post.tags.create(name: tag)
+      end
        redirect_to post_path(@post.id), notice: "投稿しました"
     else
        @posts = Post.all

@@ -56,6 +56,8 @@
             <% else %>
             <!-- 非ログイン -->
             <li><%= link_to "LPRとは？", home_about_path %></li>
+            <li><%= link_to "ゲストログイン（法人ユーザー）", homes_guest_sign_in_path, method: :post %></li>
+            <li><%= link_to "ゲストログイン（一般ユーザ）", users_guest_sign_in_path, method: :post %></li>
             <li><%= link_to "新規登録", new_user_registration_path, data: {"turbolinks" => false} %></li>
             <li><%= link_to "ログイン", new_user_session_path %></li>
           <% end %>
@@ -67,7 +69,7 @@
     <!-- 検索機能 -->
     <div class="text-right" style="margin: 10px;">
       <%= form_tag(search_path, method: "get") do %>
-        <%= text_field_tag :keyword, params[:keyword], placeholder:"投稿タイトルや紹介文から検索できます" %>
+        <%= text_field_tag :keyword, params[:keyword], placeholder:"キーワードを入力すると該当する投稿が表示されます" %>
         <%= submit_tag 'Search' %>
       <% end %>
     </div>
