@@ -12,6 +12,7 @@
 		<% end %><br>
 		<%= post.liked_users.count %>いいね
 
+
 <!-- 		<div id="star-rate-<%= @comments.id %>">評価</div>
 		<script>
 			$('#star-rate-<%= @comments.id %>').raty({
@@ -24,6 +25,7 @@
 			score: "#{comment.average(:rate).to_f.round(1)}",
 			});
 		</script> -->
+
 
 	</div>
 <% end %>
