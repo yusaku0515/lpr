@@ -19,4 +19,15 @@
 
 
 
+  /* レスポンシブ対応（スマホサイズ） */
+  @media screen and (max-width:425px) {
+    .container {
+      width: 100%;
+    }
+    body {
+      width: 100%;
+    }
+  }
+
+
 
