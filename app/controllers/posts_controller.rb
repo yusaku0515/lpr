@@ -10,7 +10,7 @@ before_action :authenticate_user!,{only:[:edit, :show]} #ログインしてい�
     if params[:tag_name]
        @posts = Post.tagged_with(params[:tag_name]).page(params[:page]).per(6)
     else
-       @posts = Post.page(params[:page]).per(6)
+       @posts = Post.all.page(params[:page]).per(6)
     end
   end
 
