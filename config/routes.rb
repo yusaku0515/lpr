@@ -34,6 +34,12 @@ end
 
   resources :locals, only: [:create, :destroy]
 
+  # ゲストログイン用
+  post '/homes/guest_sign_in', to: 'homes#new_guest'
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
+  end
+
   get 'home/about' => 'homes#about'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
