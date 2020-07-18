@@ -1,15 +1,31 @@
 <% post.each do |post| %>
-<div style="text-align: center; margin-top: 15px; border-bottom: 1px solid black; padding-bottom: 15px;">
-	<%= link_to post_path(post.id) do %>
-        <%= post.title %><br>
-	<% end %>
-	<% if post.post_images.present? %>
-		<% post.post_images.each do |image| %>
-		    <%= attachment_image_tag image, :image, :fill, 200, 200 %>
-    	<% end %>
-	<% else %>
-		<%= image_tag 'profile1.jpg', size: '200x200' %>
-	<% end %><br>
-	<%= post.liked_users.count %>いいね
-</div>
+	<div style="text-align: center; margin-top: 15px; border-bottom: 1px solid black; padding-bottom: 15px;">
+		<%= link_to post_path(post.id) do %>
+	        <%= post.title %><br>
+		<% end %>
+		<% if post.post_images.present? %>
+			<% post.post_images.each do |image| %>
+			    <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+	    	<% end %>
+		<% else %>
+			<%= image_tag 'profile1.jpg', size: '200x200' %>
+		<% end %><br>
+		<%= post.liked_users.count %>いいね
+
+
+<!-- 		<div id="star-rate-<%= @comments.id %>">評価</div>
+		<script>
+			$('#star-rate-<%= @comments.id %>').raty({
+			size: 36,
+			starOff:  '<%#= asset_path('star-off.png') %>',
+			starOn : '<%#= asset_path('star-on.png') %>',
+			starHalf: '<%#= asset_path('star-half.png') %>',
+			half: true,
+			readOnly: true,
+			score: "#{comment.average(:rate).to_f.round(1)}",
+			});
+		</script> -->
+
+
+	</div>
 <% end %>
