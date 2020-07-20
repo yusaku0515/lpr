@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
-def new
+  def new
     @contact = Contact.new
-  end
+    end
 
   def create
     @contact = Contact.new(contact_params)
@@ -17,6 +17,6 @@ def new
   private
 
   def contact_params
-    params.permit(:email, :message) #require(:contact)は不要
+    params.permit(:email, :message) # require(:contact)は不要
   end
 end

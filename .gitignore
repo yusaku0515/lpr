@@ -33,3 +33,5 @@
 /.env
 
 /app/mailers/contact_mailer.rb
+
+/public

@@ -39,6 +39,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Rspec テスト用
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -80,7 +82,7 @@ gem "refile-mini_magick"
 
 # アドミン作成用
 gem 'activeadmin'
-gem 'active_admin_flat_skin' #activeadminのデザイン変更
+gem 'active_admin_flat_skin' # activeadminのデザイン変更
 
 # 画像を複数枚アップロードする
 gem 'carrierwave'
@@ -106,4 +108,3 @@ end
 
 # ページネーション
 gem 'kaminari'
-

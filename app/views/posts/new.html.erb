@@ -25,12 +25,6 @@
 				<h4>画像</h4>
 				<%= f.attachment_field :post_images_images, multiple: true %>
 
-
-				<%#= f.fields_for :post_images do |post_image| %>
-				     <%#= post_image.file_field :image %>
-				<%# end %>
-
-
 			    <%= f.submit '投稿', :style=>"margin-top:10px;" %>
 
 			<% end %>
