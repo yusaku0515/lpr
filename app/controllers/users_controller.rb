@@ -21,6 +21,7 @@ class UsersController < ApplicationController
       @user.update(user_params)
       reset_session # ログアウト
       redirect_to root_path
+      return # ここから下は実行されない
     else
       if @user.update(user_params) # 会員登録情報の編集用記述
         redirect_to user_path(@user.id)
@@ -28,7 +29,7 @@ class UsersController < ApplicationController
         render 'edit'
         end
     end
-     end
+  end
 
   def leave
     @user = User.find(params[:id])
