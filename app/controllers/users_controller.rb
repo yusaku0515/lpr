@@ -3,16 +3,16 @@ class UsersController < ApplicationController
 
   def signup2
     @user = User.find(params[:id])
-    end
+  end
 
   def show
     @user = User.find(params[:id])
     @posts = Post.where(user_id: params[:id]).page(params[:page]).per(6)
-    end
+  end
 
   def edit
     @user = User.find(params[:id])
-    end
+  end
 
   def update
     @user = User.find(params[:id])
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
   def leave
     @user = User.find(params[:id])
-    end
+  end
 
   private
 

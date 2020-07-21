@@ -30,11 +30,6 @@ Rails.application.routes.draw do
   end
 
   resources :locals, only: [:create, :destroy]
-  # ゲストログイン用
-  post '/homes/guest_sign_in', to: 'homes#new_guest'
-  devise_scope :user do
-    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
-  end
 
   # ゲストログイン用
   post '/homes/guest_sign_in', to: 'homes#new_guest'

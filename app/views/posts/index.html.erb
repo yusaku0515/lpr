@@ -15,6 +15,7 @@
 			<%= render partial: 'post_list', locals: { post: @posts } %>
 			</div>
 
+			<!-- ページネーション＋非同期通信＝もっと見る -->
 			<div class="more">
 				<%= link_to_next_page @posts, 'もっと見る', remote: true, id: 'view_more' %>
 			</div>
