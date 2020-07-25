@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, { only: [:edit, :show] } # ログインしていないと見れない アクセス権限
+  before_action :authenticate_user!, { only: [:edit, :show, :new] } # ログインしていないと見れない アクセス権限
 
   def new
     @post = Post.new

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Post, type: :model do
+RSpec.describe Post, type: :model do #describeはテストのグループ化を宣言する
   let(:user) { create(:user) }
   let!(:post) { build(:post, user_id: user.id) }
 

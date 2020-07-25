@@ -22,7 +22,7 @@ class Post < ApplicationRecord
   # indexページを6個刻みに表示
   paginates_per 6
 
-  # バリデージョン
+  # バリデージョン（投稿タイトル、投稿文は空白では投稿できない）
   validates :post_text, presence: true
   validates :title, presence: true
 
