@@ -29,6 +29,11 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if @post.user_id == current_user.id
+      render 'edit'
+    else
+      redirect_to posts_path, notice: "現ユーザーが投稿したものでないので編集ページへアクセスできません"
+    end
   end
 
   def create
