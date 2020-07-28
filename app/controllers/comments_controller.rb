@@ -10,9 +10,9 @@ class CommentsController < ApplicationController
       @comment_post.create_notification_comment!(current_user, @comment.id)
       render :index, notice: "コメントしました"
     else
-      redirect_to root_path, notice: "コメントできませんでした"
+      redirect_to post_path(@post.id), notice: "コメントできませんでした"
     end
-    end
+  end
 
   def destroy
     @comment = Comment.find(params[:id])

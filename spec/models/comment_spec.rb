@@ -3,21 +3,22 @@ require 'rails_helper'
 RSpec.describe 'Commentモデルのテスト', type: :model do
 	let(:user) { create(:user) }
 	let!(:post) { build(:post, user_id: user.id) }
+	let!(:comment) { build(:comment, post_id: post.id) }
 
-    # describe 'バリデーションのテスト', js: true do
-    #     context 'commentカラム' do
-    #         it '空欄でないこと' do
-    #             fill_in 'comment[comment]', with: ''
-    #             is_expected.to eq false;
-    #         end
-    #     end
-	   #  context 'rateカラム' do
-	   #      it '空欄でないこと' do
-	   #          comment.rate = ''
-	   #          is_expected.to eq false
-	   #      end
-	   #  end
-    # end
+    describe 'バリデーションのテスト', js: true do
+        context 'commentカラム' do
+            it '空欄でないこと' do
+                comment = ''
+                is_expected.to eq false;
+            end
+        end
+	    context 'rateカラム' do
+	        it '空欄でないこと' do
+	            rate = ''
+	            is_expected.to eq false
+	        end
+	    end
+    end
 
     describe 'アソシエーションのテスト' do
         context 'Postモデルとの関係' do
