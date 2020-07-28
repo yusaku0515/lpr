@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
       flash[:success] = 'お問い合わせを受け付けました'
       redirect_to root_path
     else
-      render :new
+      redirect_to contacts_new_path, notice: "メールアドレスとお問い合わせ内容に空欄があると送信できません"
     end
   end
 

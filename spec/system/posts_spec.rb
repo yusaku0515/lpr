@@ -133,23 +133,15 @@ describe '投稿のテスト' do #describeはテストのグループ化を宣�
 		end
 	end
 
-	# describe '一覧画面のテスト' do
-	# 	before do
-	# 		visit posts_path
-	# 	end
-	# 	context '表示の確認' do
-	# 		it '自分と他人の画像のリンク先が正しい' do
-	# 			expect(page).to have_link '', href: user_path(book.user)
-	# 			expect(page).to have_link '', href: user_path(book2.user)
-	# 		end
-	# 		it '自分と他人のタイトルのリンク先が正しい' do
-	# 			expect(page).to have_link book.title, href: book_path(book)
-	# 			expect(page).to have_link book2.title, href: book_path(book2)
-	# 		end
-	# 		it '自分と他人のオピニオンが表示される' do
-	# 			expect(page).to have_content book.body
-	# 			expect(page).to have_content book2.body
-	# 		end
-	# 	end
-	# end
+	describe '一覧画面のテスト' do
+		before do
+			visit posts_path
+		end
+		context '表示の確認' do
+			it '自分と他人のタイトルのリンク先が正しい' do
+				expect(page).to have_link post.title, href: post_path(post)
+				expect(page).to have_link post2.title, href: post_path(post2)
+			end
+		end
+	end
 end
