@@ -6,8 +6,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   before_action :check_guest, only: [:update, :destroy]
 
-
-
   # GET /resource/sign_up
   # def new
   #   super

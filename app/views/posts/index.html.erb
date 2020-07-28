@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
-		<div class="col-xs-3"></div>
-		<div class="col-xs-6">
+		<div class="col-sm-3"></div>
+		<div class="col-xs-12 col-sm-6">
 
 			<!-- サクセスメッセージ -->
 			<% if flash[:notice] %>
@@ -15,6 +15,7 @@
 			<%= render partial: 'post_list', locals: { post: @posts } %>
 			</div>
 
+			<!-- ページネーション＋非同期通信＝もっと見る -->
 			<div class="more">
 				<%= link_to_next_page @posts, 'もっと見る', remote: true, id: 'view_more' %>
 			</div>
