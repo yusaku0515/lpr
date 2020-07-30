@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     if @user.id == current_user.id
       render 'edit'
     else
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user), notice: "ユーザーIDが違う為編集ページへアクセスできません！ユーザーIDを確認してください！"
     end
   end
 
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       return # ここから下は実行されない
     else
       if @user.update(user_params) # 会員登録情報の編集用記述
-        redirect_to user_path(@user.id)
+        redirect_to user_path(@user.id), notice: "変更内容を更新しました"
       else # エラーメッセージ表示用
         render 'edit'
         end

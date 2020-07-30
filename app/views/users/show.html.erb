@@ -1,8 +1,14 @@
 <div class="container">
 	<div class="row">
+					<!-- サクセスメッセージ -->
+			<% if flash[:notice] %>
+				<div class="flash">
+					<%= flash[:notice] %>
+				</div>
+			<% end %>
 		<!-- 一般ユーザー -->
 		<% if @user.user_status == true %>
-			<div class="col-xs-12 col-sm-7">
+			<div class="col-xs-12 col-sm-8">
 			<h3>ユーザー詳細</h3>
 			<table class="table table-striped">
 				<tbody>
@@ -26,13 +32,13 @@
 			</table>
 			<button><%= link_to "編集", edit_user_path(@user.id), :style=>"color:white; text-decoration: none;" %></button>
 			</div>
-			<div class="col-xs-12 col-sm-5">
+			<div class="col-xs-12 col-sm-4">
 			<h3>いいねしている投稿</h3>
 				<%= render partial: 'post_like_list', locals: { user: @user } %>
 			</div>
 			<!-- 法人ユーザー -->
 			<% elsif @user.user_status == false %>
-				<div class="col-xs-12 col-sm-5">
+				<div class="col-xs-12 col-sm-8">
 				<h3>ユーザー詳細</h3>
 					<table class="table table-striped">
 						<tbody>
@@ -74,7 +80,7 @@
 					</table>
 					<button><%= link_to "編集", edit_user_path(@user.id), :style=>"color:white; text-decoration: none;" %></button>
 				</div>
-				<div class="col-xs-12 col-sm-5">
+				<div class="col-xs-12 col-sm-4">
 				<h3>投稿一覧</h3>
 				<% @user.posts.each do |post| %>
 					<div style="text-align:center; margin-top: 15px; border-bottom: 1px solid black; padding-bottom: 15px;">

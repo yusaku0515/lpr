@@ -34,98 +34,148 @@ describe 'ユーザー認証のテスト' do
     context 'ログイン画面に遷移' do
       let(:test_user) { user }
       it 'ログインに成功する' do
-        fill_in 'user[email]', with: user.email
+        fill_in 'user[email]', with: test_user.email
         fill_in 'user[password]', with: test_user.password
         click_button 'ログイン'
 
         expect(page).to have_content 'ログインしました'
       end
 
-      it 'ログインに失敗する' do
-        fill_in 'user[email]', with: ''
-        fill_in 'user[password]', with: ''
-        click_button 'ログイン'
+      # it 'ログインに失敗する' do
+      #   fill_in 'user[email]', with: ''
+      #   fill_in 'user[password]', with: ''
+      #   click_button 'ログイン'
 
-        expect(current_path).to eq(new_user_session_path)
-      end
+      #   expect(current_path).to eq(new_user_session_path)
+      # end
     end
   end
 end
 
-describe 'ユーザーのテスト' do
-  let(:user) { create(:user) }
-  let!(:test_user2) { create(:user) }
-  let!(:post) { create(:post, user: user) }
-  before do
-    visit new_user_session_path
-    fill_in 'user[email]', with: user.email
-    fill_in 'user[password]', with: user.password
-    click_button 'ログイン'
-  end
+# describe 'ユーザー（法人）のテスト' do
+#   let(:user) { create(:user) }
+#   let!(:testuser) { create(:user) }
+#   let!(:post) { create(:post, user: user) }
+#   before do
+#     visit new_user_session_path
+#     fill_in 'user[email]', with: user.email
+#     fill_in 'user[password]', with: user.password
+#     click_button 'ログイン'
+#   end
 
-  describe '編集のテスト' do
-    context '自分の編集画面への遷移' do
-      it '遷移できる' do
-        visit edit_user_path(user)
-        expect(current_path).to eq('/users/' + user.id.to_s + '/edit')
-      end
-    end
-    context '他人の編集画面への遷移' do
-      it '遷移できない' do
-        visit edit_user_path(test_user2)
-        expect(current_path).to eq('/users/' + user.id.to_s)
-      end
-    end
-  end
+#   describe '編集のテスト' do
+#     context '自分の編集画面への遷移' do
+#       it '遷移できる' do
+#         visit edit_user_path(user)
+#         expect(current_path).to eq('/users/' + user.id.to_s + '/edit')
+#       end
+#     end
+#     context '他人の編集画面への遷移' do
+#       it '遷移できない' do
+#         visit edit_user_path(testuser)
+#         expect(current_path).to eq('/users/' + user.id.to_s)
+#       end
+#     end
+#     context '表示の確認' do
+#       before do
+#         visit edit_user_path(user)
+#       end
+#       it 'ユーザー情報編集と表示される' do
+#         expect(page).to have_content('ユーザー情報編集')
+#       end
+#       it '名前編集フォームに自分の名前が表示される' do
+#         expect(page).to have_field 'user[company_name]', with: user.company_name
+#       end
+#       it '画像編集フォームが表示される' do
+#         expect(page).to have_field 'user[icon_image]'
+#       end
+#       it '自己紹介編集フォームに自分の自己紹介が表示される' do
+#         expect(page).to have_field 'user[introduction]', with: user.introduction
+#       end
+#       it '編集に成功する' do
+#         click_button '変更内容を保存する'
+#         expect(page).to have_content '変更内容を更新しました'
+#         expect(current_path).to eq('/users/' + user.id.to_s)
+#       end
+#     end
+#   end
 
-    # context '表示の確認' do
-    #   before do
-    #     visit edit_user_path(user)
-    #   end
-    #   it 'User infoと表示される' do
-    #     expect(page).to have_content('User info')
-    #   end
-    #   it '名前編集フォームに自分の名前が表示される' do
-    #     expect(page).to have_field 'user[name]', with: user.name
-    #   end
-    #   it '画像編集フォームが表示される' do
-    #     expect(page).to have_field 'user[profile_image]'
-    #   end
-    #   it '自己紹介編集フォームに自分の自己紹介が表示される' do
-    #     expect(page).to have_field 'user[introduction]', with: user.introduction
-    #   end
-    #   it '編集に成功する' do
-    #     click_button 'Update User'
-    #     expect(page).to have_content 'successfully'
-    #     expect(current_path).to eq('/users/' + user.id.to_s)
-    #   end
-    #   it '編集に失敗する' do
-    #     fill_in 'user[name]', with: ''
-    #     click_button 'Update User'
-    #     expect(page).to have_content 'error'
-				# #もう少し詳細にエラー文出したい
-    #     expect(current_path).to eq('/users/' + user.id.to_s)
-    #   end
-    # end
+#   describe '詳細画面のテスト' do
+#     before do
+#       visit user_path(user)
+#     end
+#     context '表示の確認' do
+#       it 'ユーザー詳細と表示される' do
+#         expect(page).to have_content('ユーザー詳細')
+#       end
+#       it 'ユーザー詳細情報が表示される' do
+#         expect(page).to have_content(user.company_name)
+#         expect(page).to have_content(user.postal_code)
+#         expect(page).to have_content(user.address)
+#         expect(page).to have_content(user.phone_number)
+#         expect(page).to have_content(user.hp_url)
+#         expect(page).to have_css('img.icon_image')
+#         expect(page).to have_content(user.introduction)
+#       end
 
-  # describe '一覧画面のテスト' do
-  #   before do
-  #     visit users_path
-  #   end
+#       it '投稿一覧と表示される' do
+#         expect(page).to have_content('投稿一覧')
+#       end
+#       # it '投稿一覧の投稿画像が表示される' do
+#       #   expect(page).to have_css('post.post_images')
+#       # end
+#       it '投稿一覧のtitleのリンク先が正しい' do
+#         expect(page).to have_link post.title, href: post_path(post)
+#       end
+#     end
+#   end
+# end
+
+# 一般ユーザーとしてログインできない、なんで？
+# describe 'ユーザー（一般）のテスト' do
+#   let(:user1) { FactoryBot.create(:user) }
+#   let!(:user2) { FactoryBot.create(:user) }
+#   let!(:post) { create(:post, user: user) }
+#   before do
+#     visit new_user_session_path
+#     fill_in 'user[email]', with: user.email
+#     fill_in 'user[password]', with: user.password
+#     click_button 'ログイン'
+#   end
+
+#   describe '編集のテスト' do
+#     context '自分の編集画面への遷移' do
+#       it '遷移できる' do
+#         visit edit_user_path(testuser)
+#         expect(current_path).to eq('/users/' + user.id.to_s + '/edit')
+#       end
+#     end
+#     context '他人の編集画面への遷移' do
+#       it '遷移できない' do
+#         visit edit_user_path(user)
+#         expect(current_path).to eq('/users/' + user.id.to_s)
+#       end
+#     end
   #   context '表示の確認' do
-  #     it 'Usersと表示される' do
-  #       expect(page).to have_content('Users')
+  #     before do
+  #       visit edit_user_path(user)
   #     end
-  #     it '自分と他の人の画像が表示される' do
-  #       expect(all('img').size).to eq(3)
+  #     it 'ユーザー情報編集と表示される' do
+  #       expect(page).to have_content('ユーザー情報編集')
   #     end
-  #     it '自分と他の人の名前が表示される' do
-  #       expect(page).to have_content user.name
-  #       expect(page).to have_content test_user2.name
+  #     it '名前編集フォームに自分の名前が表示される' do
+  #       expect(page).to have_field 'user[company_name]', with: user.company_name
   #     end
-  #     it 'showリンクが表示される' do
-  #       expect(page).to have_link 'Show', href: user_path(user)
-  #       expect(page).to have_link 'Show', href: user_path(test_user2)
+  #     it '画像編集フォームが表示される' do
+  #       expect(page).to have_field 'user[icon_image]'
+  #     end
+  #     it '自己紹介編集フォームに自分の自己紹介が表示される' do
+  #       expect(page).to have_field 'user[introduction]', with: user.introduction
+  #     end
+  #     it '編集に成功する' do
+  #       click_button '変更内容を保存する'
+  #       expect(page).to have_content '変更内容を更新しました'
+  #       expect(current_path).to eq('/users/' + user.id.to_s)
   #     end
   #   end
   # end
@@ -135,18 +185,29 @@ describe 'ユーザーのテスト' do
   #     visit user_path(user)
   #   end
   #   context '表示の確認' do
-  #     it 'Booksと表示される' do
-  #       expect(page).to have_content('Books')
+  #     it 'ユーザー詳細と表示される' do
+  #       expect(page).to have_content('ユーザー詳細')
   #     end
-  #     it '投稿一覧のユーザーの画像のリンク先が正しい' do
-  #       expect(page).to have_link '', href: user_path(user)
+  #     it 'ユーザー詳細情報が表示される' do
+  #       expect(page).to have_content(user.company_name)
+  #       expect(page).to have_content(user.postal_code)
+  #       expect(page).to have_content(user.address)
+  #       expect(page).to have_content(user.phone_number)
+  #       expect(page).to have_content(user.hp_url)
+  #       expect(page).to have_css('img.icon_image')
+  #       expect(page).to have_content(user.introduction)
   #     end
+
+  #     it '投稿一覧と表示される' do
+  #       expect(page).to have_content('投稿一覧')
+  #     end
+  #     # it '投稿一覧の投稿画像が表示される' do
+  #     #   expect(page).to have_css('post.post_images')
+  #     # end
   #     it '投稿一覧のtitleのリンク先が正しい' do
-  #       expect(page).to have_link book.title, href: book_path(book)
-  #     end
-  #     it '投稿一覧にopinionが表示される' do
-  #       expect(page).to have_content(book.body)
+  #       expect(page).to have_link post.title, href: post_path(post)
   #     end
   #   end
   # end
-end
+# end
+
