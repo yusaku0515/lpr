@@ -151,11 +151,11 @@ describe 'ユーザー（法人）のテスト' do
         expect(current_path).to eq('/users/' + user.id.to_s + '/edit')
       end
     end
-    # context '他人の編集画面への遷移' do
-    #   it '遷移できない' do
-    #     visit edit_user_path(user)
-    #     expect(current_path).to eq('/users/' + user.id.to_s)
-    #   end
+    context '他人の編集画面への遷移' do
+      it '遷移できない' do
+        visit edit_user_path(user)
+        expect(current_path).to eq('/users/' + user.id.to_s)
+      end
     # end
     # context '表示の確認' do
     #   before do
