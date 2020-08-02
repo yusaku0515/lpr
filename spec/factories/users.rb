@@ -1,6 +1,6 @@
 FactoryBot.define do
   # 法人ユーザー
-  factory :Corporation_user do
+  factory :corporation_user do
     email { Faker::Internet.email }
     password { 'password' }
     password_confirmation { 'password' }
@@ -15,5 +15,6 @@ FactoryBot.define do
     user_status { true }
     family_name { "test" }
     first_name { "user" }
+    age { "26" }
   end
 end
