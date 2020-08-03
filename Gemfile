@@ -70,7 +70,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 検索機能
-gem 'ransack'
+gem 'ransack' #未使用
 
 # 環境変数を用いる為に使用
 gem 'dotenv-rails'
@@ -90,7 +90,7 @@ gem 'activeadmin'
 gem 'active_admin_flat_skin' # activeadminのデザイン変更
 
 # 画像を複数枚アップロードする
-gem 'carrierwave'
+gem 'carrierwave' #未使用
 
 # デバッグ用
 gem 'pry-byebug'
