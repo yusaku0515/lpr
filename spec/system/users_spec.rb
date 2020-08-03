@@ -172,28 +172,28 @@ describe 'ユーザー（法人）のテスト' do
         expect(current_path).to eq('/users/' + user.id.to_s)
       end
     end
-    # context '表示の確認' do
-    #   before do
-    #     visit edit_user_path(user)
-    #   end
-    #   it 'ユーザー情報編集と表示される' do
-    #     expect(page).to have_content('ユーザー情報編集')
-    #   end
-    #   it '名前編集フォームに自分の名前が表示される' do
-    #     expect(page).to have_field 'user[company_name]', with: user.company_name
-    #   end
-    #   it '画像編集フォームが表示される' do
-    #     expect(page).to have_field 'user[icon_image]'
-    #   end
-    #   it '自己紹介編集フォームに自分の自己紹介が表示される' do
-    #     expect(page).to have_field 'user[introduction]', with: user.introduction
-    #   end
-    #   it '編集に成功する' do
-    #     click_button '変更内容を保存する'
-    #     expect(page).to have_content '変更内容を更新しました'
-    #     expect(current_path).to eq('/users/' + user.id.to_s)
-    #   end
-    # end
+    context '表示の確認' do
+      before do
+        visit edit_user_path(user)
+      end
+      it 'ユーザー情報編集と表示される' do
+        expect(page).to have_content('ユーザー情報編集')
+      end
+      it '名前編集フォームに自分の名前が表示される' do
+        expect(page).to have_field 'user[company_name]', with: user.company_name
+      end
+      it '画像編集フォームが表示される' do
+        expect(page).to have_field 'user[icon_image]'
+      end
+      it '自己紹介編集フォームに自分の自己紹介が表示される' do
+        expect(page).to have_field 'user[introduction]', with: user.introduction
+      end
+      it '編集に成功する' do
+        click_button '変更内容を保存する'
+        expect(page).to have_content '変更内容を更新しました'
+        expect(current_path).to eq('/users/' + user.id.to_s)
+      end
+    end
   end
 
   describe '詳細画面のテスト' do
