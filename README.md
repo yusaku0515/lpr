@@ -29,7 +29,7 @@ PRしたい人は季節や時期によって変わってくると思われる<br
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1HPreGUNmYisz-1D8AvpCAeanrwT3ub5XzZVY7d4z0H0/edit#gid=0
 
-### 開発環境
+## 開発環境
 - OS<br>
 Linux(Ubuntu)<br>
 - 言語<br>
