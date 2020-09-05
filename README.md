@@ -29,3 +29,19 @@ PRしたい人は季節や時期によって変わってくると思われる<br
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1HPreGUNmYisz-1D8AvpCAeanrwT3ub5XzZVY7d4z0H0/edit#gid=0
 
+### 開発環境
+- OS<br>
+Linux(Ubuntu)<br>
+- 言語<br>
+HTML,CSS,JavaScript,Ruby,SQL<br>
+- フレームワーク<br>
+Ruby on Rails<br>
+Bootstrap<br>
+- JSライブラリ<br>
+jQuery<br>
+- インフラ<br>
+AWS(EC2,RDS,EIP)<br>
+- テストフレームワーク<br>
+RSpec<br>
+- その他ツールなど<br>
+Vagrant,VirtualBox, Slack<br>
